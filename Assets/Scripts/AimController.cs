@@ -46,16 +46,34 @@ public class AimController : MonoBehaviour
 
     public void OnBeginDrag(BaseEventData eventData)
     {
-        ShowSniperLine();
-        SetSniperLineOrigin();
+        if (gameState.MissilesRemaining > 0)
+        {
+            ShowSniperLine();
+            SetSniperLineOrigin();
+        }
     }
 
     public void OnDrag(BaseEventData eventData)
     {
-        PointerEventData pointer = (PointerEventData)eventData;
+        if (gameState.MissilesRemaining > 0)
+        {
+            PointerEventData pointer = (PointerEventData)eventData;
 
-        SetSniperLineTarget(pointer);
-        RotateCannon(pointer);
+            SetSniperLineTarget(pointer);
+            RotateCannon(pointer);
+        }
+    }
+
+    public void OnEndDrag(BaseEventData eventData)
+    {
+        if (gameState.MissilesRemaining > 0)
+        {
+            PointerEventData pointer = (PointerEventData)eventData;
+
+            Vector2 aimingDirection = GetAimingDirection(pointer);
+            Cannon.ShootMissiles(AimOriginTransform.gameObject, aimingDirection);
+            HideSniperLine();
+        }
     }
 
     private void RotateCannon(PointerEventData pointer)
@@ -69,19 +87,12 @@ public class AimController : MonoBehaviour
         }
     }
 
-    public void OnEndDrag(BaseEventData eventData)
-    {
-        PointerEventData pointer = (PointerEventData)eventData;
-        Debug.Log(pointer);
-
-        Vector2 aimingDirection = GetAimingDirection(pointer);
-        Cannon.ShootMissiles(AimOriginTransform.gameObject, aimingDirection);
-        HideSniperLine();
-    }
-
     private void SetSniperLineOrigin()
     {
-        line.SetPosition(0, AimOriginWorldCoordinates);
+        if (line.positionCount > 0)
+        {
+            line.SetPosition(0, AimOriginWorldCoordinates);
+        }
     }
 
     private void SetSniperLineTarget(PointerEventData pointer)
@@ -101,7 +112,7 @@ public class AimController : MonoBehaviour
         trajectoryLength = aimingDirection.magnitude;
 
         var linePoints = new LinkedList<Vector3>();
-        Vector3 previousPoint = line.GetPosition(0);
+        Vector3 previousPoint = line.positionCount > 0 ? line.GetPosition(0) : Vector3.zero;
         float totalLineLength = 0f;
         float simulationTime = 0;
         while (totalLineLength < trajectoryLength)

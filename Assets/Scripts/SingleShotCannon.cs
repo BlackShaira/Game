@@ -7,6 +7,13 @@ using UnityEngine.EventSystems;
 
 public class SingleShotCannon : CannonBase
 {
+    private GameState gameState;
+
+    private void Start()
+    {
+        gameState = FindObjectOfType<GameState>();
+    }
+
     public override void ShootMissiles(GameObject cannonObject, Vector2 aimingDirection)
     {
         if (MissilePrefab == null)
@@ -16,10 +23,16 @@ public class SingleShotCannon : CannonBase
         }
 
         GameObject missile = GameObject.Instantiate(
-            MissilePrefab, 
-            cannonObject.transform.position, 
+            MissilePrefab,
+            cannonObject.transform.position,
             Quaternion.identity);
         SetSpeed(missile, aimingDirection.normalized * MissileSpeed);
+
+        if (gameState == null)
+        {
+            gameState = FindObjectOfType<GameState>();
+        }
+        gameState.MissilesRemaining -= 1;
     }
 
     private void SetSpeed(GameObject missile, Vector2 velocity)

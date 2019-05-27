@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 212284518752865162}
   - component: {fileID: 50527631448979898}
   - component: {fileID: 58918153319334086}
+  - component: {fileID: 114543320717263054}
+  - component: {fileID: 114623271726471780}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -77,6 +79,28 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.09
+--- !u!114 &114543320717263054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1806409536748020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5aa6d5daa9ec2940a16f47d034a31c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114623271726471780
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1806409536748020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3453c65015fe0a3458d15e9fe17fece8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212284518752865162
 SpriteRenderer:
   m_ObjectHideFlags: 1

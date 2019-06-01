@@ -28,8 +28,8 @@ public class Fragile : MonoBehaviour
 
     private void Crash()
     {
-		BroadcastMessage ("triggerBreak");
+        BroadcastMessage("triggerBreak");
         Destroy(this.gameObject);
-        gameState.Score += PointsForCracking;
+        gameState.GainPoints(PointsForCracking);
     }
 }

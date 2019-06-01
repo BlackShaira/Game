@@ -20,6 +20,7 @@ public class AimController : MonoBehaviour
     public float TrajectoryEstimationTimeStep = 0.1f;
     public Transform AimOriginTransform;
     public Transform MovableCannonTransform;
+	public AudioSource audio;
 
     private Vector3 AimOriginWorldCoordinates
     {
@@ -42,6 +43,7 @@ public class AimController : MonoBehaviour
         gameState = FindObjectOfType<GameState>();
         cachedCamera = Camera.main;
         line = GetComponent<LineRenderer>();
+		audio = GetComponent<AudioSource>();
     }
 
     public void OnBeginDrag(BaseEventData eventData)
@@ -68,6 +70,7 @@ public class AimController : MonoBehaviour
     {
         if (gameState.MissilesRemaining > 0)
         {
+			audio.Play ();
             PointerEventData pointer = (PointerEventData)eventData;
 
             Vector2 aimingDirection = GetAimingDirection(pointer);

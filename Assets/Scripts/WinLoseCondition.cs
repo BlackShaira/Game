@@ -49,9 +49,14 @@ public class WinLoseCondition : MonoBehaviour
             Missile[] missiles = FindObjectsOfType<Missile>();
             int activeMissiles = CountActiveBodies(missiles);
             int activeFragiles = CountActiveBodies(fragiles);
+            bool noneFragileWasHitLongTime = fragiles.All(fragile => fragile.WasNotHitLongTimeByMissile);
+            if (noneFragileWasHitLongTime)
+            {
+                
+            }
             if (gameState.MissilesRemaining == 0
                 && fragiles.Length > 0
-                && activeMissiles == 0
+                && (activeMissiles == 0 || noneFragileWasHitLongTime)
                 && activeFragiles == 0)
             {
                 StartCoroutine(LoseRoutine());

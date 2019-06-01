@@ -72,6 +72,7 @@ public class AimController : MonoBehaviour
 
             Vector2 aimingDirection = GetAimingDirection(pointer);
             Cannon.ShootMissiles(AimOriginTransform.gameObject, aimingDirection);
+            gameState.LastShotTime = Time.fixedTime;
             HideSniperLine();
         }
     }

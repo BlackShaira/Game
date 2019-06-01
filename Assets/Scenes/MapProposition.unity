@@ -3845,8 +3845,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e314a0e0122afe4f8575f6fc34e57f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EvaluteEveryNSeconds: 1
-  DelayAfterGameFinishInSeconds: 1
+  EvaluteEveryNSeconds: 0.5
+  DelayAfterGameFinishInSeconds: 1.5
   WinGui: {fileID: 2143174411}
   LoseGui: {fileID: 924804011}
 --- !u!114 &1189098144
@@ -3865,6 +3865,7 @@ MonoBehaviour:
   Score: 0
   MissilesRemaining: 3
   Phase: 0
+  LastShotTime: 0
 --- !u!4 &1189098145
 Transform:
   m_ObjectHideFlags: 0

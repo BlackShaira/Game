@@ -29,8 +29,9 @@ public class Fragile : MonoBehaviour
 
     private void Crash()
     {
-		BroadcastMessage ("triggerBreak");
+        // planks have no receiver
+        BroadcastMessage("triggerBreak", SendMessageOptions.DontRequireReceiver);
         Destroy(this.gameObject);
-        gameState.Score += PointsForCracking;
+        gameState.GainPoints(PointsForCracking);
     }
 }

@@ -10,7 +10,7 @@ public class HighscoreValue : MonoBehaviour
 {
     private GameState gameState;
     private TextMeshProUGUI label;
-    private int lastAmount = int.MinValue;
+    private int? lastAmount = int.MinValue;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class HighscoreValue : MonoBehaviour
 
     private void Update()
     {
-        if (lastAmount != gameState.Score)
+        if (lastAmount == null || lastAmount != gameState.Highscore)
         {
             if (label == null)
             {

@@ -23,6 +23,8 @@ public class DestroyWhenOutOfBounds : MonoBehaviour
     {
         if (isMarkedForDestruction)
         {
+           // TODO: count points of these bottles too
+
             Destroy(this.gameObject);
         }
     }

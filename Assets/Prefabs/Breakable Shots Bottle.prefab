@@ -228,3 +228,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrackOverVelocity: 7
   PointsForCracking: 100
+  MustCrackToWin: 1

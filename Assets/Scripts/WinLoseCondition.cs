@@ -37,7 +37,10 @@ public class WinLoseCondition : MonoBehaviour
     {
         if (gameState.Phase == GamePhase.Playing)
         {
-            Fragile[] fragiles = FindObjectsOfType<Fragile>();
+            Fragile[] fragiles = FindObjectsOfType<Fragile>()
+                .Where(fragile => fragile.MustCrackToWin)
+                .ToArray();
+
             if (fragiles.Length == 0)
             {
                 StartCoroutine(WinRoutine());

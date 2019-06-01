@@ -567,7 +567,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 27.62, y: 10.49, z: 6.18}
+  m_Size: {x: 25.2, y: 10.49, z: 6.18}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &144647750
 Transform:
@@ -3846,7 +3846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EvaluteEveryNSeconds: 1
-  DelayAfterGameFinishInSeconds: 2
+  DelayAfterGameFinishInSeconds: 1
   WinGui: {fileID: 2143174411}
   LoseGui: {fileID: 924804011}
 --- !u!114 &1189098144

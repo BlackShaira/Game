@@ -61,7 +61,13 @@ public class WinLoseCondition : MonoBehaviour
 
     private int CountActiveBodies(Component[] actors)
     {
-        return actors.Count(actor => !actor.GetComponent<Rigidbody2D>().IsSleeping());
+        return actors.Count(actor =>
+        {
+            Rigidbody2D body = actor.GetComponent<Rigidbody2D>();
+            return !body.IsSleeping() &&
+                body.velocity.magnitude > 0.01f &&
+                body.angularVelocity > 1f;
+        });
     }
 
     IEnumerator WinRoutine()

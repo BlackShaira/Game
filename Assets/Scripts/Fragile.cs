@@ -23,15 +23,29 @@ public class Fragile : MonoBehaviour
         //Debug.Log("collision relative speed: " + collision.relativeVelocity.magnitude);
         if (collision.relativeVelocity.magnitude > CrackOverVelocity)
         {
-            Crash();
+            float comboMultiplier = 1f;
+            var missile =
+                collision.otherCollider.GetComponent<Missile>() ??
+                collision.collider.GetComponent<Missile>();
+
+            if (missile)
+            {
+                comboMultiplier *= missile.PointsMultiplier;
+                // next hits will get more points:
+                missile.PointsMultiplier *= missile.ComboMultiplier;
+            }
+
+            Crash(comboMultiplier);
         }
     }
 
-    private void Crash()
+    private void Crash(float comboMultiplier)
     {
-        // planks have no receiver
+        // planks have no receiver (no triggerBreak method)
         BroadcastMessage("triggerBreak", SendMessageOptions.DontRequireReceiver);
         Destroy(this.gameObject);
-        gameState.GainPoints(PointsForCracking);
+
+        int pointsReceived = (int)(PointsForCracking * comboMultiplier);
+        gameState.GainPoints(pointsReceived);
     }
 }

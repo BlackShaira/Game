@@ -14,6 +14,7 @@ public class GameState : MonoBehaviour
     public int Score;
     public int MissilesRemaining;
     public GamePhase Phase = GamePhase.Playing;
+    public float LastShotTime;
 
     private int initialMissileCount;
 

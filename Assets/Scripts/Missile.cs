@@ -7,4 +7,6 @@ using UnityEngine.EventSystems;
 
 public class Missile : MonoBehaviour
 {
+    public float PointsMultiplier = 1f;
+    public float ComboMultiplier = 1.1f;
 }

@@ -229,3 +229,4 @@ MonoBehaviour:
   CrackOverVelocity: 7
   PointsForCracking: 100
   MustCrackToWin: 1
+  CollisionWaitTime: 5.5

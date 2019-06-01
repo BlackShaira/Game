@@ -10,12 +10,14 @@ public class DestroyWhenOutOfBounds : MonoBehaviour
     private Collider mapArea;
     private Collider2D[] currentColliders;
     private bool isMarkedForDestruction = false;
+    private GameState gameState;
 
     private void Start()
     {
         //This must be a 3D collider because 2D colliders are flat and intersection
         //doesn't work.
         mapArea = GameObject.Find("MapBounds").GetComponent<Collider>();
+        gameState = FindObjectOfType<GameState>();
         currentColliders = GetComponents<Collider2D>();
     }
 
@@ -23,7 +25,11 @@ public class DestroyWhenOutOfBounds : MonoBehaviour
     {
         if (isMarkedForDestruction)
         {
-           // TODO: count points of these bottles too
+            var fragile = GetComponent<Fragile>();
+            if (fragile)
+            {
+                gameState.GainPoints(fragile.PointsForCracking);
+            }
 
             Destroy(this.gameObject);
         }

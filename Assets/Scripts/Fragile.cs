@@ -9,6 +9,7 @@ public class Fragile : MonoBehaviour
 {
     public float CrackOverVelocity = 1f;
     public int PointsForCracking;
+    public bool MustCrackToWin = false;
 
     private GameState gameState;
 
@@ -28,6 +29,7 @@ public class Fragile : MonoBehaviour
 
     private void Crash()
     {
+		BroadcastMessage ("triggerBreak");
         Destroy(this.gameObject);
         gameState.Score += PointsForCracking;
     }
